@@ -1,14 +1,7 @@
 #! usr/bin/env python3
 
-### IMPORTING MODULES ###
-"""
-The "subprocess" module allows us to call shell functions from within our code.
-It is used to call other Python and C codes in an iterative manner and otherwise.
-Also to run GROMACS commands like trjconv.
-"""
 import subprocess
 from os.path import exists
-
 
 # Emptying the folders
 subprocess.run("rm Anion/*", shell=True)
@@ -30,7 +23,7 @@ subprocess.run("rm SysInfo.txt", shell=True)
 Checking whether .xtc file exists or not, and creating it in case not
 since it is much faster to read iteratively than .trr file
 """
-if exists("MDSfiles/nvt3.xtc") == False:
+if not exists("MDSfiles/nvt3.xtc"):
     subprocess.run("gmx trjconv -f MDSfiles/nvt3.trr -o MDSfiles/nvt3.xtc", shell=True)
 
 
@@ -58,11 +51,6 @@ n = end - start
 # Total timesteps = 0 to 2000
 # Exceptions: 20m Li and 10m Zn : both 10000 timesteps
 
-
-####################
-# ITERATIONS BEGIN #
-####################
-
 for i in range(start, end):
     # Run trjconv command and generate coordinate text files (for each iteration)
     subprocess.run(
@@ -81,15 +69,10 @@ for i in range(start, end):
     subprocess.run("python3 Codes/Cycles.py", shell=True)
 
 
-#######################
-# ITERATIONS END HERE #
-#######################
-
-
 subprocess.run("python3 Codes/RTadderLi.py", shell=True)
 
 
-### AVERAGING ###
+# Averaging
 subprocess.run("gcc Codes/Averager.c -o Codes/Averager -lm", shell=True)
 
 # Print percentage of water forming 0,1,2,3,4 H-bonds (averaged out over iterations)
@@ -253,9 +236,7 @@ subprocess.run(
 subprocess.run("python3 Codes/TableCreateLi.py", shell=True)
 
 
-### 3D PLOTTING ###
-
-
+# 3D Plotting
 def Plot():
     # Print oxygen to oxygen H-bond vectors file ([Starting Point],[Direction])
     subprocess.run("gcc Codes/HBvectors.c -o Codes/HBvectors -lm", shell=True)
@@ -272,7 +253,7 @@ def Plot():
 # Plot()
 
 
-### REMOVE UNNECESSARY FILES ###
+# Remove unnecessary files
 subprocess.run("rm Water/MyFile.csv", shell=True)
 subprocess.run("rm Water/FreqDistri.txt", shell=True)
 subprocess.run("rm Averages/AvgFreqDistri1.csv", shell=True)
