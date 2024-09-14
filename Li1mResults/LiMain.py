@@ -2,6 +2,7 @@
 
 import subprocess
 from os.path import exists
+import numpy as np
 
 # Emptying the folders
 subprocess.run("rm Anion/*", shell=True)
@@ -43,15 +44,19 @@ Ex- start=20, end=101 if timesteps go from 20 to 100
 """
 
 start = 0
-end = 1
+end = 2.0
+step = 0.01
 
-n = end - start
+n = int((end - start) / step) + 1
+
+print("n = ", n)
 
 
 # Total timesteps = 0 to 2000
 # Exceptions: 20m Li and 10m Zn : both 10000 timesteps
+# for i in range(start, end):
 
-for i in range(start, end):
+for i in np.arange(start, end, step):
     # Run trjconv command and generate coordinate text files (for each iteration)
     subprocess.run(
         "python3 Codes/Coordinates.py", shell=True, input="{}".format(i), text=True
