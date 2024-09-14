@@ -36,8 +36,8 @@ int numW, numT, numL, numZ;
 // Global variables for the counting unique H-bonds/Coordination with H2O,TFSI, Li,Zn
 double countW = 0, countA = 0, countL = 0, countZ = 0;
 
-double Wrt[8500][6], Ort[400][7], Frt[300][7], Nrt[200][6];
-double Lrt[500][4], Zrt[2][4];
+double Wrt[8500][6], Ort[400][7], Frt[300][7], Nrt[300][6];
+double Lrt[2000][4], Zrt[2][4];
 int Wcounter = 0, Fcounter = 0, Ocounter = 0, Ncounter = 0;
 int Lcounter = 0, Zcounter = 0;
 
