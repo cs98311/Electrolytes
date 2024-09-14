@@ -44,12 +44,12 @@ Ex- start=20, end=101 if timesteps go from 20 to 100
 """
 
 start = 0
-end = 2.0
+end = 0.05
 step = 0.01
 
-n = int((end - start) / step) + 1
+n = int((end - start) / step)
 
-print("n = ", n)
+print("n =", n)
 
 
 # Total timesteps = 0 to 2000
