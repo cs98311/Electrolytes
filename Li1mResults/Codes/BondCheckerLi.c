@@ -43,7 +43,7 @@ int Lcounter = 0, Zcounter = 0;
 
 double **exchange;
 
-int **Adj_mat;
+// int **Adj_mat;
 
 ///////////////////////
 // DEFINING FUNCTIONS //
@@ -120,21 +120,21 @@ void PBC(double vector[3])
 	}
 }
 
-// DFS(Depth First Search)
-void DFS(int i, int visited[numW], int components[numW])
-{
-	visited[i] = 1;
-	components[i] = count;
-	int j = 0;
+// // DFS(Depth First Search)
+// void DFS(int i, int visited[numW], int components[numW])
+// {
+// 	visited[i] = 1;
+// 	components[i] = count;
+// 	int j = 0;
 
-	for (j = 0; j < numW; j++)
-	{
-		if ((Adj_mat[i][j] == 1) && (visited[j] == 0))
-		{
-			DFS(j, visited, components);
-		}
-	}
-}
+// 	for (j = 0; j < numW; j++)
+// 	{
+// 		if ((Adj_mat[i][j] == 1) && (visited[j] == 0))
+// 		{
+// 			DFS(j, visited, components);
+// 		}
+// 	}
+// }
 
 // Function to check if H-bond is formed by current water molecule(m) being checked
 // with another water oxygen(i) in the system
@@ -216,8 +216,8 @@ void Check_HB_Water(double H1[numW][3], double OW[numW][3], int m, int Donor[num
 			// Counting twice for both donor and acceptor
 			countW += 2;
 			// Filling the Adjacency Matrix
-			Adj_mat[i][m] = 1;
-			Adj_mat[m][i] = 1;
+			// Adj_mat[i][m] = 1;
+			// Adj_mat[m][i] = 1;
 
 			Wrt[Wcounter][0] = m;
 			Wrt[Wcounter][1] = noH;
@@ -712,11 +712,11 @@ int main()
 	FILE *fAccept = fopen("Water/Acceptor.txt", "a");
 	FILE *fOt_Li = fopen("Anion/Ot_Li_Coodn.txt", "a");
 	FILE *fOt_Zn = fopen("Anion/Ot_Zn_Coodn.txt", "a");
-	FILE *file5 = fopen("Water/MyFile.csv", "a");
-	FILE *file6 = fopen("Water/FreqDistri.csv", "a");
-	FILE *file7 = fopen("Water/FreqDistri.txt", "a");
-	FILE *file8 = fopen("Water/ClusterPercent.txt", "a");
-	FILE *file9 = fopen("Water/ClusterPercent1.csv", "a");
+	// FILE *file5 = fopen("Water/MyFile.csv", "a");
+	// FILE *file6 = fopen("Water/FreqDistri.csv", "a");
+	// FILE *file7 = fopen("Water/FreqDistri.txt", "a");
+	// FILE *file8 = fopen("Water/ClusterPercent.txt", "a");
+	// FILE *file9 = fopen("Water/ClusterPercent1.csv", "a");
 	FILE *fRtime = fopen("RT/RtimesW.txt", "a");
 	FILE *fEdges = fopen("Water/Edges.csv", "w");
 	FILE *fEdgesWT = fopen("Combined/EdgesT.csv", "w");
@@ -730,7 +730,6 @@ int main()
 		fCombined == NULL || fCounter == NULL || fHBP == NULL || fHB5 == NULL ||
 		fDonor == NULL || fLi_Ow == NULL || fZn_Ow == NULL || fLi_Ot == NULL || fZn_Ot == NULL ||
 		fH_Ot == NULL || fAccept == NULL || fOt_Li == NULL || fOt_Zn == NULL ||
-		file5 == NULL || file6 == NULL || file7 == NULL || file8 == NULL || file9 == NULL ||
 		fRtime == NULL || fEdges == NULL || fEdgesWT == NULL || fOriF == NULL || fOriN == NULL ||
 		fOriOw == NULL || fOriOt == NULL)
 	{
@@ -771,24 +770,24 @@ int main()
 
 	// Adj_mat
 	//  Allocate memory for the rows (array of pointers)
-	Adj_mat = (int **)malloc(numW * sizeof(int *));
+	// Adj_mat = (int **)malloc(numW * sizeof(int *));
 
-	if (Adj_mat == NULL)
-	{
-		printf("Memory allocation failed!\n");
-		return 1;
-	}
+	// if (Adj_mat == NULL)
+	// {
+	// 	printf("Memory allocation failed!\n");
+	// 	return 1;
+	// }
 
 	// Allocate memory for each row (array of double values)
-	for (int i = 0; i < numW; i++)
-	{
-		Adj_mat[i] = (int *)malloc(numW * sizeof(int));
-		if (Adj_mat[i] == NULL)
-		{
-			printf("Memory allocation to Adj_mat[][] failed for row %d!\n", i);
-			return 1;
-		}
-	}
+	// for (int i = 0; i < numW; i++)
+	// {
+	// 	Adj_mat[i] = (int *)malloc(numW * sizeof(int));
+	// 	if (Adj_mat[i] == NULL)
+	// 	{
+	// 		printf("Memory allocation to Adj_mat[][] failed for row %d!\n", i);
+	// 		return 1;
+	// 	}
+	// }
 
 	// Defining arrays for all elements of the system
 	double H1[numW][3], H2[numW][3], OW[numW][3];
@@ -949,13 +948,13 @@ int main()
 	}
 
 	// Adj_mat[][]
-	for (i = 0; i < numW; i++)
-	{
-		for (j = 0; j < numW; j++)
-		{
-			Adj_mat[i][j] = 0;
-		}
-	}
+	// for (i = 0; i < numW; i++)
+	// {
+	// 	for (j = 0; j < numW; j++)
+	// 	{
+	// 		Adj_mat[i][j] = 0;
+	// 	}
+	// }
 
 	// visited[]
 	for (i = 0; i < numW; i++)
@@ -1031,39 +1030,39 @@ int main()
 	// CONNECTED COMPONENTS //
 	//////////////////////////
 
-	for (i = 0; i < numW; i++)
-	{
-		if (visited[i] == 0)
-		{
-			count += 1;
-			DFS(i, visited, components);
-		}
-	}
+	// for (i = 0; i < numW; i++)
+	// {
+	// 	if (visited[i] == 0)
+	// 	{
+	// 		count += 1;
+	// 		DFS(i, visited, components);
+	// 	}
+	// }
 
-	int ClusterSizes[count];
+	// int ClusterSizes[count];
 
 	// Initializing ClusterSizes[] to all zero
-	for (i = 0; i < count; i++)
-	{
-		ClusterSizes[i] = 0;
-	}
+	// for (i = 0; i < count; i++)
+	// {
+	// 	ClusterSizes[i] = 0;
+	// }
 
-	for (i = 1; i <= count; i++)
-	{
-		for (j = 0; j < numW; j++)
-		{
-			if (components[j] == i)
-			{
-				ClusterSizes[i - 1] += 1;
-			}
-		}
-	}
+	// for (i = 1; i <= count; i++)
+	// {
+	// 	for (j = 0; j < numW; j++)
+	// 	{
+	// 		if (components[j] == i)
+	// 		{
+	// 			ClusterSizes[i - 1] += 1;
+	// 		}
+	// 	}
+	// }
 
-	selectionSort(ClusterSizes, count);
+	// selectionSort(ClusterSizes, count);
 
-	FILE *fCbig = fopen("Water/Largest.txt", "a");
-	fprintf(fCbig, "%d ", ClusterSizes[count - 1]);
-	fclose(fCbig);
+	// FILE *fCbig = fopen("Water/Largest.txt", "a");
+	// fprintf(fCbig, "%d ", ClusterSizes[count - 1]);
+	// fclose(fCbig);
 
 	//////////////////////////
 	// Operations on arrays //
@@ -1935,68 +1934,68 @@ int main()
 
 	// Frequencies
 	// Upper bounds included
-	int one = 0, two = 0, three2five = 0, five2ten = 0, ten2twenty = 0, twenty2fifty = 0, fifty2hundred = 0, hundredplus = 0, threehundplus = 0, fivehundplus = 0;
-	for (i = 0; i < count; i++)
-	{
-		if (ClusterSizes[i] == 1)
-			one += 1;
-		else if (ClusterSizes[i] == 2)
-			two += 1;
-		else if (ClusterSizes[i] > 2 && ClusterSizes[i] <= 5)
-			three2five += 1;
-		else if (ClusterSizes[i] > 5 && ClusterSizes[i] <= 10)
-			five2ten += 1;
-		else if (ClusterSizes[i] > 10 && ClusterSizes[i] <= 20)
-			ten2twenty += 1;
-		else if (ClusterSizes[i] > 20 && ClusterSizes[i] <= 50)
-			twenty2fifty += 1;
-		else if (ClusterSizes[i] > 50 && ClusterSizes[i] <= 100)
-			fifty2hundred += 1;
-		else if (ClusterSizes[i] > 100 && ClusterSizes[i] <= 300)
-			hundredplus += 1;
-		else if (ClusterSizes[i] > 300 && ClusterSizes[i] <= 500)
-			threehundplus += 1;
-		if (ClusterSizes[i] > 500)
-			fivehundplus += 1;
-	}
-	fprintf(file6, "TS%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n", timestep, one, two, three2five, five2ten, ten2twenty, twenty2fifty, fifty2hundred, hundredplus, threehundplus, fivehundplus);
-	fprintf(file7, "%d %d %d %d %d %d %d %d %d %d\n", one, two, three2five, five2ten, ten2twenty, twenty2fifty, fifty2hundred, hundredplus, threehundplus, fivehundplus);
+	// int one = 0, two = 0, three2five = 0, five2ten = 0, ten2twenty = 0, twenty2fifty = 0, fifty2hundred = 0, hundredplus = 0, threehundplus = 0, fivehundplus = 0;
+	// for (i = 0; i < count; i++)
+	// {
+	// 	if (ClusterSizes[i] == 1)
+	// 		one += 1;
+	// 	else if (ClusterSizes[i] == 2)
+	// 		two += 1;
+	// 	else if (ClusterSizes[i] > 2 && ClusterSizes[i] <= 5)
+	// 		three2five += 1;
+	// 	else if (ClusterSizes[i] > 5 && ClusterSizes[i] <= 10)
+	// 		five2ten += 1;
+	// 	else if (ClusterSizes[i] > 10 && ClusterSizes[i] <= 20)
+	// 		ten2twenty += 1;
+	// 	else if (ClusterSizes[i] > 20 && ClusterSizes[i] <= 50)
+	// 		twenty2fifty += 1;
+	// 	else if (ClusterSizes[i] > 50 && ClusterSizes[i] <= 100)
+	// 		fifty2hundred += 1;
+	// 	else if (ClusterSizes[i] > 100 && ClusterSizes[i] <= 300)
+	// 		hundredplus += 1;
+	// 	else if (ClusterSizes[i] > 300 && ClusterSizes[i] <= 500)
+	// 		threehundplus += 1;
+	// 	if (ClusterSizes[i] > 500)
+	// 		fivehundplus += 1;
+	// }
+	// fprintf(file6, "TS%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n", timestep, one, two, three2five, five2ten, ten2twenty, twenty2fifty, fifty2hundred, hundredplus, threehundplus, fivehundplus);
+	// fprintf(file7, "%d %d %d %d %d %d %d %d %d %d\n", one, two, three2five, five2ten, ten2twenty, twenty2fifty, fifty2hundred, hundredplus, threehundplus, fivehundplus);
 
-	fprintf(file5, "TS%d,", timestep);
-	for (i = count - 1; i > 0; i--)
-	{
-		fprintf(file5, "%d,", ClusterSizes[i]);
-	}
-	fprintf(file5, "%d", ClusterSizes[i]);
-	fprintf(file5, "\n");
+	// fprintf(file5, "TS%d,", timestep);
+	// for (i = count - 1; i > 0; i--)
+	// {
+	// 	fprintf(file5, "%d,", ClusterSizes[i]);
+	// }
+	// fprintf(file5, "%d", ClusterSizes[i]);
+	// fprintf(file5, "\n");
 
-	// Percentages
-	int one1 = 0, two1 = 0, three2five1 = 0, five2ten1 = 0, ten2twenty1 = 0, twenty2fifty1 = 0, fifty2hundred1 = 0, hundredplus1 = 0, threehundplus1 = 0, fivehundplus1 = 0;
-	for (i = 0; i < count; i++)
-	{
-		if (ClusterSizes[i] == 1)
-			one1 += ClusterSizes[i];
-		else if (ClusterSizes[i] == 2)
-			two1 += ClusterSizes[i];
-		else if (ClusterSizes[i] > 2 && ClusterSizes[i] <= 5)
-			three2five1 += ClusterSizes[i];
-		else if (ClusterSizes[i] > 5 && ClusterSizes[i] <= 10)
-			five2ten1 += ClusterSizes[i];
-		else if (ClusterSizes[i] > 10 && ClusterSizes[i] <= 20)
-			ten2twenty1 += ClusterSizes[i];
-		else if (ClusterSizes[i] > 20 && ClusterSizes[i] <= 50)
-			twenty2fifty1 += ClusterSizes[i];
-		else if (ClusterSizes[i] > 50 && ClusterSizes[i] <= 100)
-			fifty2hundred1 += ClusterSizes[i];
-		else if (ClusterSizes[i] > 100 && ClusterSizes[i] <= 300)
-			hundredplus1 += ClusterSizes[i];
-		else if (ClusterSizes[i] > 300 && ClusterSizes[i] <= 500)
-			threehundplus1 += ClusterSizes[i];
-		if (ClusterSizes[i] > 500)
-			fivehundplus1 += ClusterSizes[i];
-	}
-	fprintf(file9, "TS%d,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf\n", timestep, (double)one1 * 100 / numW, (double)two1 * 100 / numW, (double)three2five1 * 100 / numW, (double)five2ten1 * 100 / numW, (double)ten2twenty1 * 100 / numW, (double)twenty2fifty1 * 100 / numW, (double)fifty2hundred1 * 100 / numW, (double)hundredplus1 * 100 / numW, (double)threehundplus1 * 100 / numW, (double)fivehundplus1 * 100 / numW);
-	fprintf(file8, "%.2lf %.2lf %.2lf %.2lf %.2lf %.2lf %.2lf %.2lf %.2lf %.2lf\n", (double)one1 * 100 / numW, (double)two1 * 100 / numW, (double)three2five1 * 100 / numW, (double)five2ten1 * 100 / numW, (double)ten2twenty1 * 100 / numW, (double)twenty2fifty1 * 100 / numW, (double)fifty2hundred1 * 100 / numW, (double)hundredplus1 * 100 / numW, (double)threehundplus1 * 100 / numW, (double)fivehundplus1 * 100 / numW);
+	// // Percentages
+	// int one1 = 0, two1 = 0, three2five1 = 0, five2ten1 = 0, ten2twenty1 = 0, twenty2fifty1 = 0, fifty2hundred1 = 0, hundredplus1 = 0, threehundplus1 = 0, fivehundplus1 = 0;
+	// for (i = 0; i < count; i++)
+	// {
+	// 	if (ClusterSizes[i] == 1)
+	// 		one1 += ClusterSizes[i];
+	// 	else if (ClusterSizes[i] == 2)
+	// 		two1 += ClusterSizes[i];
+	// 	else if (ClusterSizes[i] > 2 && ClusterSizes[i] <= 5)
+	// 		three2five1 += ClusterSizes[i];
+	// 	else if (ClusterSizes[i] > 5 && ClusterSizes[i] <= 10)
+	// 		five2ten1 += ClusterSizes[i];
+	// 	else if (ClusterSizes[i] > 10 && ClusterSizes[i] <= 20)
+	// 		ten2twenty1 += ClusterSizes[i];
+	// 	else if (ClusterSizes[i] > 20 && ClusterSizes[i] <= 50)
+	// 		twenty2fifty1 += ClusterSizes[i];
+	// 	else if (ClusterSizes[i] > 50 && ClusterSizes[i] <= 100)
+	// 		fifty2hundred1 += ClusterSizes[i];
+	// 	else if (ClusterSizes[i] > 100 && ClusterSizes[i] <= 300)
+	// 		hundredplus1 += ClusterSizes[i];
+	// 	else if (ClusterSizes[i] > 300 && ClusterSizes[i] <= 500)
+	// 		threehundplus1 += ClusterSizes[i];
+	// 	if (ClusterSizes[i] > 500)
+	// 		fivehundplus1 += ClusterSizes[i];
+	// }
+	// fprintf(file9, "TS%d,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf,%.2lf\n", timestep, (double)one1 * 100 / numW, (double)two1 * 100 / numW, (double)three2five1 * 100 / numW, (double)five2ten1 * 100 / numW, (double)ten2twenty1 * 100 / numW, (double)twenty2fifty1 * 100 / numW, (double)fifty2hundred1 * 100 / numW, (double)hundredplus1 * 100 / numW, (double)threehundplus1 * 100 / numW, (double)fivehundplus1 * 100 / numW);
+	// fprintf(file8, "%.2lf %.2lf %.2lf %.2lf %.2lf %.2lf %.2lf %.2lf %.2lf %.2lf\n", (double)one1 * 100 / numW, (double)two1 * 100 / numW, (double)three2five1 * 100 / numW, (double)five2ten1 * 100 / numW, (double)ten2twenty1 * 100 / numW, (double)twenty2fifty1 * 100 / numW, (double)fifty2hundred1 * 100 / numW, (double)hundredplus1 * 100 / numW, (double)threehundplus1 * 100 / numW, (double)fivehundplus1 * 100 / numW);
 
 	// Printing out results in respective files
 	for (i = 0; i < numW; i++)
@@ -2338,11 +2337,11 @@ int main()
 	free(exchange);
 
 	// Free the allocated memory
-	for (int i = 0; i < numW; i++)
-	{
-		free(Adj_mat[i]);
-	}
-	free(Adj_mat);
+	// for (int i = 0; i < numW; i++)
+	// {
+	// 	free(Adj_mat[i]);
+	// }
+	// free(Adj_mat);
 
 	/////////////////////
 	// CLOSING THE FILES//
@@ -2382,11 +2381,11 @@ int main()
 	fclose(fOt_Li);
 	fclose(fOt_Zn);
 
-	fclose(file5);
-	fclose(file6);
-	fclose(file7);
-	fclose(file8);
-	fclose(file9);
+	// fclose(file5);
+	// fclose(file6);
+	// fclose(file7);
+	// fclose(file8);
+	// fclose(file9);
 
 	fclose(fRtime);
 	fclose(fRtimeF);

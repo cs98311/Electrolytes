@@ -18,15 +18,15 @@ rm Codes/Header
 int main()
 {
 
-	FILE *file1 = fopen("Water/FreqDistri.csv", "w");
-	FILE *file2 = fopen("Averages/AvgFreqDistri1.csv", "w");
+	// FILE *file1 = fopen("Water/FreqDistri.csv", "w");
+	// FILE *file2 = fopen("Averages/AvgFreqDistri1.csv", "w");
 
 	FILE *file3 = fopen("Averages/AvgHBpercent.csv", "w");
 	FILE *file4 = fopen("Averages/AvgHBperWater.csv", "w");
 	FILE *file5 = fopen("Plots/DataFiles/Combined.csv", "w");
 
-	FILE *file6 = fopen("Water/ClusterPercent1.csv", "w");
-	FILE *file7 = fopen("Averages/AvgClusterPercent1.csv", "w");
+	// FILE *file6 = fopen("Water/ClusterPercent1.csv", "w");
+	// FILE *file7 = fopen("Averages/AvgClusterPercent1.csv", "w");
 
 	FILE *file8 = fopen("Averages/AvgHBabsValues.csv", "w");
 	FILE *file9 = fopen("Plots/DataFiles/HBabsValues.txt", "w");
@@ -59,27 +59,27 @@ int main()
 
 	fprintf(file30, "0w,1w,2w\n");
 
-	char *t = "Timestep";
-	char *s = "Size";
-	char *one = "1";
-	char *a = "2";
-	char *b = "3-5";
-	char *c = "6-10";
-	char *d = "11-20";
-	char *e = "21-50";
-	char *f = "51-100";
-	char *g = "101-300";
-	char *h = "301-500";
-	char *i = ">500";
-	char *avg = "Avg";
+	// char *t = "Timestep";
+	// char *s = "Size";
+	// char *one = "1";
+	// char *a = "2";
+	// char *b = "3-5";
+	// char *c = "6-10";
+	// char *d = "11-20";
+	// char *e = "21-50";
+	// char *f = "51-100";
+	// char *g = "101-300";
+	// char *h = "301-500";
+	// char *i = ">500";
+	// char *avg = "Avg";
 
-	fprintf(file1, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", t, one, a, b, c, d, e, f, g, h, i);
+	// fprintf(file1, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", t, one, a, b, c, d, e, f, g, h, i);
 
-	fprintf(file2, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n%s,", s, one, a, b, c, d, e, f, g, h, i, avg);
+	// fprintf(file2, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n%s,", s, one, a, b, c, d, e, f, g, h, i, avg);
 
-	fprintf(file7, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n%s,", s, one, a, b, c, d, e, f, g, h, i, avg);
+	// fprintf(file7, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n%s,", s, one, a, b, c, d, e, f, g, h, i, avg);
 
-	fprintf(file6, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", t, one, a, b, c, d, e, f, g, h, i);
+	// fprintf(file6, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n", t, one, a, b, c, d, e, f, g, h, i);
 
 	char *s1 = "#HB";
 	char *a1 = "Zero";
@@ -154,13 +154,13 @@ int main()
 	char *i5 = "121-150";
 	char *avg5 = "Avg";
 
-	fclose(file1);
-	fclose(file2);
+	// fclose(file1);
+	// fclose(file2);
 	fclose(file3);
 	fclose(file4);
 	fclose(file5);
-	fclose(file6);
-	fclose(file7);
+	// fclose(file6);
+	// fclose(file7);
 	fclose(file8);
 	fclose(file9);
 	fclose(file10);

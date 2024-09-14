@@ -101,25 +101,25 @@ subprocess.run(
 
 
 # Print out water cluster frequency distribution (averaged out over iterations)
-o = 10
-subprocess.run(
-    "./Codes/Averager",
-    input="{}\n{}\nWater/FreqDistri.txt\nAverages/AvgFreqDistri1.csv".format(n, o),
-    capture_output=True,
-    text=True,
-)
+# o = 10
+# subprocess.run(
+#     "./Codes/Averager",
+#     input="{}\n{}\nWater/FreqDistri.txt\nAverages/AvgFreqDistri1.csv".format(n, o),
+#     capture_output=True,
+#     text=True,
+# )
 
 
 # Print out water cluster percentage distribution (averaged out over iterations)
-q = 10
-subprocess.run(
-    "./Codes/Averager",
-    input="{}\n{}\nWater/ClusterPercent.txt\nAverages/AvgClusterPercent1.csv".format(
-        n, q
-    ),
-    capture_output=True,
-    text=True,
-)
+# q = 10
+# subprocess.run(
+#     "./Codes/Averager",
+#     input="{}\n{}\nWater/ClusterPercent.txt\nAverages/AvgClusterPercent1.csv".format(
+#         n, q
+#     ),
+#     capture_output=True,
+#     text=True,
+# )
 
 
 # Print cumulative H-bond data (averaged out over iterations) for table creation
@@ -215,26 +215,26 @@ subprocess.run(
 
 
 ### TRANSPOSE FOR EASIER PLOTTING AND ANALYSIS ###
-subprocess.run(
-    ["python3", "Codes/Transposer.py"],
-    input="Water/MyFile.csv\nWater/ClusterSizes.csv\n",
-    text=True,
-)
-subprocess.run(
-    ["python3", "Codes/Transposer.py"],
-    input="Averages/AvgFreqDistri1.csv\nAverages/AvgFreqDistri.csv\n",
-    text=True,
-)
-subprocess.run(
-    ["python3", "Codes/Transposer.py"],
-    input="Water/ClusterPercent1.csv\nWater/ClusterPercent.csv\n",
-    text=True,
-)
-subprocess.run(
-    ["python3", "Codes/Transposer.py"],
-    input="Averages/AvgClusterPercent1.csv\nAverages/AvgClusterPercent.csv\n",
-    text=True,
-)
+# subprocess.run(
+#     ["python3", "Codes/Transposer.py"],
+#     input="Water/MyFile.csv\nWater/ClusterSizes.csv\n",
+#     text=True,
+# )
+# subprocess.run(
+#     ["python3", "Codes/Transposer.py"],
+#     input="Averages/AvgFreqDistri1.csv\nAverages/AvgFreqDistri.csv\n",
+#     text=True,
+# )
+# subprocess.run(
+#     ["python3", "Codes/Transposer.py"],
+#     input="Water/ClusterPercent1.csv\nWater/ClusterPercent.csv\n",
+#     text=True,
+# )
+# subprocess.run(
+#     ["python3", "Codes/Transposer.py"],
+#     input="Averages/AvgClusterPercent1.csv\nAverages/AvgClusterPercent.csv\n",
+#     text=True,
+# )
 
 
 ### CREATE H-BONDING INFO TABLES ###
@@ -259,9 +259,9 @@ def Plot():
 
 
 # Remove unnecessary files
-subprocess.run("rm Water/MyFile.csv", shell=True)
-subprocess.run("rm Water/FreqDistri.txt", shell=True)
-subprocess.run("rm Averages/AvgFreqDistri1.csv", shell=True)
+# subprocess.run("rm Water/MyFile.csv", shell=True)
+# subprocess.run("rm Water/FreqDistri.txt", shell=True)
+# subprocess.run("rm Averages/AvgFreqDistri1.csv", shell=True)
 subprocess.run("rm Codes/Averager", shell=True)
 subprocess.run("rm Codes/Header", shell=True)
 if exists("Codes/HBvectors") == True:
@@ -269,8 +269,8 @@ if exists("Codes/HBvectors") == True:
 if exists("Codes/TFSIcom") == True:
     subprocess.run("rm Codes/TFSIcom", shell=True)
 subprocess.run("rm Codes/BondCheckerLi", shell=True)
-subprocess.run("rm Water/ClusterPercent1.csv", shell=True)
-subprocess.run("rm Averages/AvgClusterPercent1.csv", shell=True)
+# subprocess.run("rm Water/ClusterPercent1.csv", shell=True)
+# subprocess.run("rm Averages/AvgClusterPercent1.csv", shell=True)
 subprocess.run("rm Averages/AvgHBabsValues.csv", shell=True)
 subprocess.run("rm Averages/AvgIsoHBabsValues.csv", shell=True)
 subprocess.run("rm Averages/AvgOneHBabsValues.csv", shell=True)
