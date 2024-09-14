@@ -55,6 +55,9 @@ with open("Water/clusterFreq.txt", "a") as f:
 with open("Water/clusterPerc.txt", "a") as f:
     print(*np.round(prob, 4), file=f)
 
+with open("Water/clusterSizes.txt", "a") as f:
+    print(*comp_sizes, file=f)
+
 
 # Largest conncted component
 with open("Water/lcc.txt", "a") as f:
