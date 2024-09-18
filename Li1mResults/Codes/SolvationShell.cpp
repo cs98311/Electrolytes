@@ -38,6 +38,7 @@ int main()
     readCoordinates("Coordinates/OW.txt", Ow, NUM_H2O);
     readCoordinates("Coordinates/F.txt", F, 6 * NUM_TFSI);
     readCoordinates("Coordinates/Ot.txt", Ot, 4 * NUM_TFSI);
+    readCoordinates("Coordinates/N1.txt", N, NUM_TFSI);
 
     // working with m-th Li+. let m=0
     // int m{0};
