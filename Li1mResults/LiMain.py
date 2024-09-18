@@ -68,6 +68,10 @@ for i in np.arange(start, end, step):
         "./Codes/BondCheckerLi", input="{}".format(i), capture_output=True, text=True
     )
 
+    # Solvation shell calculations
+    subprocess.run("g++ Codes/SolvationShell.cpp -o Codes/SolvationShell", shell=True)
+    subprocess.run("./Codes/SolvationShell", capture_output=True, text=True)
+
     # Print cumulative H-bond data (for each iteration) for table creation
     subprocess.run("python3 Codes/CompiledHBdataLi.py", shell=True)
 
@@ -269,6 +273,7 @@ if exists("Codes/HBvectors") == True:
 if exists("Codes/TFSIcom") == True:
     subprocess.run("rm Codes/TFSIcom", shell=True)
 subprocess.run("rm Codes/BondCheckerLi", shell=True)
+subprocess.run("rm Codes/SolvationShell", shell=True)
 # subprocess.run("rm Water/ClusterPercent1.csv", shell=True)
 # subprocess.run("rm Averages/AvgClusterPercent1.csv", shell=True)
 subprocess.run("rm Averages/AvgHBabsValues.csv", shell=True)
