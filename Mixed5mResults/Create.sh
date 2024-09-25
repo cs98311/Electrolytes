@@ -1,0 +1,20 @@
+#! usr/bin/bash
+
+mkdir Codes
+mkdir Averages
+mkdir Plots
+mkdir Plots/Water
+mkdir Plots/TFSI
+mkdir Plots/Cation
+mkdir Plots/DataFiles
+mkdir Plots/Graph
+mkdir Coordinates
+mkdir MDSfiles
+mkdir Tables
+mkdir Cation
+mkdir Anion
+mkdir Water
+mkdir RT
+mkdir Exchange
+mkdir Orientation
+mkdir Combined
