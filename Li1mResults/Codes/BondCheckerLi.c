@@ -207,7 +207,7 @@ void Check_HB_Water(double H1[numW][3], double OW[numW][3], int m, int Donor[num
 		angle *= 57.2958;
 
 		// Applying the geometric check for HB
-		if (distance < 0.22 && angle < 35)
+		if (distance < 0.25 && angle < 35)
 		{
 			// Adding for the Donor Hydrogen(m)
 			Donor[m] += 1;
@@ -297,7 +297,7 @@ void Check_HB_Otfsi(double H1[numW][3], double OW[numW][3], double Otfsi[4 * num
 		angle = vector_angle(v1, v2);
 		angle *= 57.2958;
 
-		if (distance < 0.22 && angle < 35)
+		if (distance < 0.25 && angle < 35)
 		{
 			HB_with_Otfsi[m] += 1;
 			Acceptor_Ot[i] += 1;
@@ -382,7 +382,7 @@ void Check_HB_F(double H1[numW][3], double OW[numW][3], double F[6 * numT][3], i
 		angle = vector_angle(v1, v2);
 		angle *= 57.2958;
 
-		if (distance < 0.232 && angle < 40)
+		if (distance < 0.25 && angle < 35)
 		{
 			HB_with_F[m] += 1;
 			countA += 1;

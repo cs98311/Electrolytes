@@ -9,7 +9,7 @@
 double BOX_LENGTH{0};
 int NUM_H2O{0}, NUM_LI{0}, NUM_TFSI{0}, NUM_ZN{0};
 const double H_BOND_DISTANCE_CUTOFF{0.25}, H_BOND_ANGLE_CUTOFF{35};
-const double SS1_CUTOFF{0.25}, SS2_CUTOFF{0.6};
+const double SS1_CUTOFF{0.28}, SS2_CUTOFF{0.54};
 
 // declare functions
 void readSystemInfo();
@@ -1852,11 +1852,9 @@ int main()
             bond2Li << "\n";
         }
         bond2Li.close();
-        
     }
 
-
-     // working with m-th Zn+2. let m=0
+    // working with m-th Zn+2. let m=0
     // int m{0};
     for (auto m = 0; m < NUM_ZN; m++)
     {
@@ -3667,8 +3665,8 @@ int main()
             bond2Zn << "\n";
         }
         bond2Zn.close();
-    }   
-    
+    }
+
     return 0;
 }
 

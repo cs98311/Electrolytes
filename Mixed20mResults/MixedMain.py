@@ -43,9 +43,9 @@ Ex- start=20, end=101 if timesteps go from 20 to 100
 'n' is the total number of timesteps being iterated
 """
 
-start = 0
-end = 0.5
-step = 0.02
+start = 100100
+end = 100200
+step = 100
 
 n = int((end - start) / step)
 
@@ -263,7 +263,7 @@ def Plot():
     subprocess.run("python3 Codes/3DplotsMixed.py", shell=True)
 
 
-# Plot()
+Plot()
 
 
 # Remove unnecessary files

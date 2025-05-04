@@ -20,7 +20,7 @@ components = list(sorted(components, key=lambda x: len(x), reverse=True))
 
 comp_sizes = [len(comp) for comp in components]
 
-prob = np.zeros(10)
+prob = np.zeros(11)
 
 for i in comp_sizes:
     if i == 1:
@@ -41,13 +41,15 @@ for i in comp_sizes:
         prob[7] += i
     elif i >= 301 and i <= 500:
         prob[8] += i
-    elif i >= 501:
+    elif i >= 501 and i <= 1000:
         prob[9] += i
+    elif i >= 1001 and i <= 5000:
+        prob[10] += i
 
 prob = prob * 100 / nx.number_of_nodes(G)
 
 heights, bins, plot = plt.hist(
-    comp_sizes, bins=[*range(1, 5), 20, 50, 100, 300, 500, 5000]
+    comp_sizes, bins=[*range(1, 5), 20, 50, 100, 300, 500, 1000, 5000]
 )
 with open("Water/clusterFreq.txt", "a") as f:
     print(*heights, file=f)
@@ -84,19 +86,20 @@ sizes = np.array(sizes)
 sizes = -np.sort(-sizes)
 
 if sizes.size:
-    with open('Water/Cycles.txt','a') as f:
-        print(*sizes, file =f)
+    with open("Water/Cycles.txt", "a") as f:
+        print(*sizes, file=f)
 
     prob = np.zeros(11)
 
     for i in sizes:
-        if(i<11): prob[i]+=1
-            
-    prob = prob/len(sizes)
+        if i < 11:
+            prob[i] += 1
+
+    prob = prob / len(sizes)
     prob = prob[3:]
 
-    with open('Water/CyclesProbs.txt','a') as f:
-        print(*np.round(prob,4), file =f)
+    with open("Water/CyclesProbs.txt", "a") as f:
+        print(*np.round(prob, 4), file=f)
 
 
 components = nx.connected_components(G)
@@ -123,19 +126,20 @@ sizes = np.array(sizes)
 sizes = -np.sort(-sizes)
 
 if sizes.size:
-    with open('Combined/Cycles.txt','a') as f:
-        print(*sizes, file =f)
-        
+    with open("Combined/Cycles.txt", "a") as f:
+        print(*sizes, file=f)
+
     prob = np.zeros(11)
 
     for i in sizes:
-        if(i<11): prob[i]+=1
-            
-    prob = prob/len(sizes)
+        if i < 11:
+            prob[i] += 1
+
+    prob = prob / len(sizes)
     prob = prob[3:]
 
-    with open('Combined/CyclesProbs.txt','a') as f:
-        print(*np.round(prob,4), file =f)
+    with open("Combined/CyclesProbs.txt", "a") as f:
+        print(*np.round(prob, 4), file=f)
 
 
 components = nx.connected_components(G)

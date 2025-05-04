@@ -9,7 +9,7 @@
 double BOX_LENGTH{0};
 int NUM_H2O{0}, NUM_LI{0}, NUM_TFSI{0}, NUM_ZN{0};
 const double H_BOND_DISTANCE_CUTOFF{0.25}, H_BOND_ANGLE_CUTOFF{35};
-const double SS1_CUTOFF{0.25}, SS2_CUTOFF{0.6};
+const double SS1_CUTOFF{0.28}, SS2_CUTOFF{0.54};
 
 // declare functions
 void readSystemInfo();

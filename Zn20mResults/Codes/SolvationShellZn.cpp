@@ -9,7 +9,7 @@
 double BOX_LENGTH{0};
 int NUM_H2O{0}, NUM_LI{0}, NUM_TFSI{0}, NUM_ZN{0};
 const double H_BOND_DISTANCE_CUTOFF{0.25}, H_BOND_ANGLE_CUTOFF{35};
-const double SS1_CUTOFF{0.25}, SS2_CUTOFF{0.6};
+const double SS1_CUTOFF{0.28}, SS2_CUTOFF{0.54};
 
 // declare functions
 void readSystemInfo();
@@ -40,7 +40,7 @@ int main()
     readCoordinates("Coordinates/Ot.txt", Ot, 4 * NUM_TFSI);
     readCoordinates("Coordinates/N1.txt", N, NUM_TFSI);
 
-    // working with m-th Li+. let m=0
+    // working with m-th Zn+2. let m=0
     // int m{0};
     for (auto m = 0; m < NUM_ZN; m++)
     {
@@ -178,24 +178,24 @@ int main()
         }
 
         // SS1 composition
-        std::ofstream comp1{"Cation/SS1comp.txt", std::ios::app};
-        if (!comp1)
+        std::ofstream comp1Zn{"Cation/SS1compZn.txt", std::ios::app};
+        if (!comp1Zn)
         {
-            std::cerr << "Uh oh, SS1comp.txt could not be opened for writing!\n";
+            std::cerr << "Uh oh, SS1compZn.txt could not be opened for writing!\n";
             return 1;
         }
-        comp1 << Ow_SS1.size() << " " << Ot_SS1.size() << " " << F_SS1.size() << " " << N_SS1.size() << "\n";
-        comp1.close();
+        comp1Zn << Ow_SS1.size() << " " << Ot_SS1.size() << " " << F_SS1.size() << " " << N_SS1.size() << "\n";
+        comp1Zn.close();
 
         // SS2 composition
-        std::ofstream comp2{"Cation/SS2comp.txt", std::ios::app};
-        if (!comp2)
+        std::ofstream comp2Zn{"Cation/SS2compZn.txt", std::ios::app};
+        if (!comp2Zn)
         {
             std::cerr << "Uh oh, SS2comp.txt could not be opened for writing!\n";
             return 1;
         }
-        comp2 << Ow_SS2.size() << " " << Ot_SS2.size() << " " << F_SS2.size() << " " << N_SS2.size() << "\n";
-        comp2.close();
+        comp2Zn << Ow_SS2.size() << " " << Ot_SS2.size() << " " << F_SS2.size() << " " << N_SS2.size() << "\n";
+        comp2Zn.close();
 
         // bonding of SS1 water
         int SS1_data[Ow_SS1.size()][9];
@@ -1819,8 +1819,8 @@ int main()
         }
 
         // SS1 bonding output
-        std::ofstream bond1{"Cation/SS1bond.txt", std::ios::app};
-        if (!bond1)
+        std::ofstream bond1Zn{"Cation/SS1bondZn.txt", std::ios::app};
+        if (!bond1Zn)
         {
             std::cerr << "Uh oh, SS1bond.txt could not be opened for writing!\n";
             return 1;
@@ -1829,15 +1829,15 @@ int main()
         {
             for (auto j = 1; j < 9; j++)
             {
-                bond1 << SS1_data[i][j] << " ";
+                bond1Zn << SS1_data[i][j] << " ";
             }
-            bond1 << "\n";
+            bond1Zn << "\n";
         }
-        bond1.close();
+        bond1Zn.close();
 
         // SS2 bonding output
-        std::ofstream bond2{"Cation/SS2bond.txt", std::ios::app};
-        if (!bond2)
+        std::ofstream bond2Zn{"Cation/SS2bondZn.txt", std::ios::app};
+        if (!bond2Zn)
         {
             std::cerr << "Uh oh, SS2bond.txt could not be opened for writing!\n";
             return 1;
@@ -1846,11 +1846,11 @@ int main()
         {
             for (auto j = 1; j < 13; j++)
             {
-                bond2 << SS2_data[i][j] << " ";
+                bond2Zn << SS2_data[i][j] << " ";
             }
-            bond2 << "\n";
+            bond2Zn << "\n";
         }
-        bond2.close();
+        bond2Zn.close();
     }
     return 0;
 }
